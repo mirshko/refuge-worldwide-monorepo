@@ -51,6 +51,7 @@ export default withAuth(
     },
     server: {
       port: PORT,
+      healthCheck: true,
     },
     images: {
       upload: "local",
