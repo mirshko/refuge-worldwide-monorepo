@@ -329,6 +329,7 @@ type Genre {
 
 input GenreWhereUniqueInput {
   id: ID
+  name: String
 }
 
 input GenreWhereInput {

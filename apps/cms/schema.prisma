@@ -35,6 +35,6 @@ model Show {
 
 model Genre {
   id    String @id @default(cuid())
-  name  String @default("")
+  name  String @unique @default("")
   shows Show[] @relation("Genre_shows")
 }
