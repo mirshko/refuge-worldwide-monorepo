@@ -166,7 +166,7 @@ type Show {
   id: ID!
   title: String
   status: String
-  coverImage: ImageFieldOutput
+  coverImage: CloudinaryImage_File
   content: Show_content_Document
   publishDate: DateTime
   artists(
@@ -185,21 +185,53 @@ type Show {
   genresCount(where: GenreWhereInput! = {}): Int
 }
 
-interface ImageFieldOutput {
-  id: ID!
-  filesize: Int!
-  width: Int!
-  height: Int!
-  extension: ImageExtension!
-  ref: String!
-  url: String!
+type CloudinaryImage_File {
+  id: ID
+  filename: String
+  originalFilename: String
+  mimetype: String
+  encoding: String
+  publicUrl: String
+  publicUrlTransformed(transformation: CloudinaryImageFormat): String
 }
 
-enum ImageExtension {
-  jpg
-  png
-  webp
-  gif
+"""
+Mirrors the formatting options [Cloudinary provides](https://cloudinary.com/documentation/image_transformation_reference).
+All options are strings as they ultimately end up in a URL.
+"""
+input CloudinaryImageFormat {
+  """
+   Rewrites the filename to be this pretty string. Do not include `/` or `.`
+  """
+  prettyName: String
+  width: String
+  height: String
+  crop: String
+  aspect_ratio: String
+  gravity: String
+  zoom: String
+  x: String
+  y: String
+  format: String
+  fetch_format: String
+  quality: String
+  radius: String
+  angle: String
+  effect: String
+  opacity: String
+  border: String
+  background: String
+  overlay: String
+  underlay: String
+  default_image: String
+  delay: String
+  color: String
+  color_space: String
+  dpr: String
+  page: String
+  density: String
+  flags: String
+  transformation: String
 }
 
 type Show_content_Document {
@@ -211,26 +243,6 @@ scalar DateTime
 
 input ShowWhereUniqueInput {
   id: ID
-}
-
-type LocalImageFieldOutput implements ImageFieldOutput {
-  id: ID!
-  filesize: Int!
-  width: Int!
-  height: Int!
-  extension: ImageExtension!
-  ref: String!
-  url: String!
-}
-
-type CloudImageFieldOutput implements ImageFieldOutput {
-  id: ID!
-  filesize: Int!
-  width: Int!
-  height: Int!
-  extension: ImageExtension!
-  ref: String!
-  url: String!
 }
 
 input ShowWhereInput {
@@ -278,16 +290,11 @@ input ShowOrderByInput {
 input ShowUpdateInput {
   title: String
   status: String
-  coverImage: ImageFieldInput
+  coverImage: Upload
   content: JSON
   publishDate: DateTime
   artists: ArtistRelateToManyForUpdateInput
   genres: GenreRelateToManyForUpdateInput
-}
-
-input ImageFieldInput {
-  upload: Upload
-  ref: String
 }
 
 """
@@ -317,7 +324,7 @@ input ShowUpdateArgs {
 input ShowCreateInput {
   title: String
   status: String
-  coverImage: ImageFieldInput
+  coverImage: Upload
   content: JSON
   publishDate: DateTime
   artists: ArtistRelateToManyForCreateInput
