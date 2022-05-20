@@ -32,19 +32,6 @@ export const Show = list({
         apiKey: CLOUDINARY_API_KEY,
         apiSecret: CLOUDINARY_API_SECRET,
       },
-      hooks: {
-        validateInput: ({ resolvedData, addValidationError }) => {
-          const { coverImage } = resolvedData;
-
-          if (
-            typeof coverImage === "undefined" ||
-            coverImage === "" ||
-            coverImage === null
-          ) {
-            addValidationError("Property 'coverImage' required");
-          }
-        },
-      },
     }),
     // The document field can be used for making highly editable content. Check out our
     // guide on the document field https://keystonejs.com/docs/guides/document-fields#how-to-use-document-fields
