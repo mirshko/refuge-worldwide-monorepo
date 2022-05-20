@@ -11,6 +11,13 @@ generator client {
   output   = "node_modules/.prisma/client"
 }
 
+model User {
+  id       String  @id @default(cuid())
+  name     String  @default("")
+  email    String  @unique @default("")
+  password String?
+}
+
 model Artist {
   id    String @id @default(cuid())
   name  String @default("")
