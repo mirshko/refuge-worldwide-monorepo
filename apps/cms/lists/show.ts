@@ -10,7 +10,7 @@ import { document } from "@keystone-6/fields-document";
 
 export const Show = list({
   fields: {
-    title: text(),
+    title: text({ validation: { isRequired: true } }),
     // Having the status here will make it easy for us to choose whether to display
     // posts on a live site.
     status: select({
@@ -24,6 +24,7 @@ export const Show = list({
       ui: {
         displayMode: "segmented-control",
       },
+      validation: { isRequired: true },
     }),
     coverImage: image(),
     // The document field can be used for making highly editable content. Check out our
@@ -42,11 +43,10 @@ export const Show = list({
       dividers: true,
     }),
     publishDate: timestamp({
-      isOrderable: true,
-      isFilterable: true,
+      validation: { isRequired: true },
     }),
-    // Here is the link from post => author.
-    // We've configured its UI display quite a lot to make the experience of editing posts better.
+    // Here is the link from show => genre.
+    // We've configured its UI display quite a lot to make the experience of editing shows better.
     artists: relationship({
       ref: "Artist.shows",
       ui: {
@@ -57,9 +57,8 @@ export const Show = list({
         inlineCreate: { fields: ["name"] },
       },
       many: true,
-      isFilterable: true,
     }),
-    // We also link posts to tags. This is a many <=> many linking.
+    // We also link shows to genres. This is a many <=> many linking.
     genres: relationship({
       ref: "Genre.shows",
       ui: {
@@ -71,7 +70,6 @@ export const Show = list({
         inlineCreate: { fields: ["name"] },
       },
       many: true,
-      isFilterable: true,
     }),
   },
 });

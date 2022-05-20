@@ -4,9 +4,8 @@ import { relationship, text } from "@keystone-6/core/fields";
 export const Genre = list({
   fields: {
     name: text({
-      isFilterable: true,
-      isOrderable: true,
       isIndexed: "unique",
+      validation: { isRequired: true },
     }),
     shows: relationship({ ref: "Show.genres", many: true }),
   },
