@@ -17,3 +17,11 @@ export const SESSION_MAX_AGE =
 // This will cause all cookies to be invalidated with each app restart (annoying but better than having a hardcoded default)
 // A secure value will be set in your Railway deploy if you use the "Deploy on Railway" button or follow the instructions in the README
 export const SESSION_SECRET = process.env.SESSION_SECRET as string;
+
+export const CLOUDINARY_CLOUD_NAME = process.env
+  .CLOUDINARY_CLOUD_NAME as string;
+export const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY as string;
+export const CLOUDINARY_API_SECRET = process.env
+  .CLOUDINARY_API_SECRET as string;
+export const CLOUDINARY_API_FOLDER = process.env
+  .CLOUDINARY_API_FOLDER as string;

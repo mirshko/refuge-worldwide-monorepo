@@ -7,6 +7,13 @@ import {
   image,
 } from "@keystone-6/core/fields";
 import { document } from "@keystone-6/fields-document";
+import { cloudinaryImage } from "@keystone-6/cloudinary";
+import {
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_FOLDER,
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET,
+} from "../config";
 
 export const Show = list({
   fields: {
@@ -26,7 +33,27 @@ export const Show = list({
       },
       validation: { isRequired: true },
     }),
-    coverImage: image(),
+    coverImage: cloudinaryImage({
+      cloudinary: {
+        cloudName: CLOUDINARY_CLOUD_NAME,
+        apiKey: CLOUDINARY_API_KEY,
+        apiSecret: CLOUDINARY_API_SECRET,
+        folder: CLOUDINARY_API_FOLDER,
+      },
+      hooks: {
+        validateInput: ({ resolvedData, addValidationError }) => {
+          const { coverImage } = resolvedData;
+
+          if (
+            typeof coverImage === "undefined" ||
+            coverImage === "" ||
+            coverImage === null
+          ) {
+            addValidationError("Property 'coverImage' required");
+          }
+        },
+      },
+    }),
     // The document field can be used for making highly editable content. Check out our
     // guide on the document field https://keystonejs.com/docs/guides/document-fields#how-to-use-document-fields
     // for more information
