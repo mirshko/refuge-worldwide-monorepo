@@ -23,5 +23,3 @@ export const CLOUDINARY_CLOUD_NAME = process.env
 export const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY as string;
 export const CLOUDINARY_API_SECRET = process.env
   .CLOUDINARY_API_SECRET as string;
-export const CLOUDINARY_API_FOLDER = process.env
-  .CLOUDINARY_API_FOLDER as string;

@@ -1,18 +1,11 @@
-import { list } from "@keystone-6/core";
-import {
-  text,
-  relationship,
-  timestamp,
-  select,
-  image,
-} from "@keystone-6/core/fields";
-import { document } from "@keystone-6/fields-document";
 import { cloudinaryImage } from "@keystone-6/cloudinary";
+import { list } from "@keystone-6/core";
+import { relationship, select, text, timestamp } from "@keystone-6/core/fields";
+import { document } from "@keystone-6/fields-document";
 import {
-  CLOUDINARY_CLOUD_NAME,
-  CLOUDINARY_API_FOLDER,
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
+  CLOUDINARY_CLOUD_NAME,
 } from "../config";
 
 export const Show = list({
@@ -38,7 +31,6 @@ export const Show = list({
         cloudName: CLOUDINARY_CLOUD_NAME,
         apiKey: CLOUDINARY_API_KEY,
         apiSecret: CLOUDINARY_API_SECRET,
-        folder: CLOUDINARY_API_FOLDER,
       },
       hooks: {
         validateInput: ({ resolvedData, addValidationError }) => {
