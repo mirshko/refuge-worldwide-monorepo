@@ -24,7 +24,6 @@ input UserWhereInput {
   id: IDFilter
   name: StringFilter
   email: StringFilter
-  password: PasswordFilter
 }
 
 input IDFilter {
@@ -70,10 +69,6 @@ input NestedStringFilter {
   startsWith: String
   endsWith: String
   not: NestedStringFilter
-}
-
-input PasswordFilter {
-  isSet: Boolean!
 }
 
 input UserOrderByInput {
@@ -244,42 +239,13 @@ input ShowWhereInput {
   NOT: [ShowWhereInput!]
   id: IDFilter
   title: StringFilter
-  status: StringNullableFilter
-  publishDate: DateTimeNullableFilter
+  status: StringFilter
+  publishDate: DateTimeFilter
   artists: ArtistManyRelationFilter
   genres: GenreManyRelationFilter
 }
 
-input StringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  mode: QueryMode
-  not: NestedStringNullableFilter
-}
-
-input NestedStringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringNullableFilter
-}
-
-input DateTimeNullableFilter {
+input DateTimeFilter {
   equals: DateTime
   in: [DateTime!]
   notIn: [DateTime!]
@@ -287,7 +253,7 @@ input DateTimeNullableFilter {
   lte: DateTime
   gt: DateTime
   gte: DateTime
-  not: DateTimeNullableFilter
+  not: DateTimeFilter
 }
 
 input ArtistManyRelationFilter {

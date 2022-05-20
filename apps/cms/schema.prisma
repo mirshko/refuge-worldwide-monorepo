@@ -12,10 +12,10 @@ generator client {
 }
 
 model User {
-  id       String  @id @default(cuid())
-  name     String  @default("")
-  email    String  @unique @default("")
-  password String?
+  id       String @id @default(cuid())
+  name     String @default("")
+  email    String @unique @default("")
+  password String
 }
 
 model Artist {
@@ -25,19 +25,19 @@ model Artist {
 }
 
 model Show {
-  id                   String    @id @default(cuid())
-  title                String    @default("")
-  status               String?   @default("draft")
+  id                   String   @id @default(cuid())
+  title                String   @default("")
+  status               String   @default("draft")
   coverImage_filesize  Int?
   coverImage_extension String?
   coverImage_width     Int?
   coverImage_height    Int?
   coverImage_mode      String?
   coverImage_id        String?
-  content              Json      @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  publishDate          DateTime?
-  artists              Artist[]  @relation("Artist_shows")
-  genres               Genre[]   @relation("Genre_shows")
+  content              Json     @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  publishDate          DateTime
+  artists              Artist[] @relation("Artist_shows")
+  genres               Genre[]  @relation("Genre_shows")
 }
 
 model Genre {
