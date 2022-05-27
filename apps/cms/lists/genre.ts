@@ -7,6 +7,9 @@ export const Genre = list({
       isIndexed: "unique",
       validation: { isRequired: true },
     }),
+    contentfulId: text({
+      validation: { isRequired: true },
+    }),
     shows: relationship({
       ref: "Show.genres",
       many: true,

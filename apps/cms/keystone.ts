@@ -15,6 +15,8 @@ import { lists } from "./schema";
 import { statelessSessions } from "@keystone-6/core/session";
 import { createAuth } from "@keystone-6/auth";
 
+import { insertSeedData } from "./seed-data";
+
 // createAuth configures signin functionality based on the config below. Note this only implements
 // authentication, i.e signing in as an item using identity and secret fields in a list. Session
 // management and access control are controlled independently in the main keystone config.
@@ -48,6 +50,11 @@ export default withAuth(
       provider: "postgresql",
       useMigrations: true,
       url: DATABASE_URL,
+      async onConnect(context) {
+        if (process.argv.includes("--seed-data")) {
+          await insertSeedData(context);
+        }
+      },
     },
     server: {
       port: PORT,

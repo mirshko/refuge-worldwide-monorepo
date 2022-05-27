@@ -36,7 +36,8 @@ model Show {
 }
 
 model Genre {
-  id    String @id @default(cuid())
-  name  String @unique @default("")
-  shows Show[] @relation("Genre_shows")
+  id           String @id @default(cuid())
+  name         String @unique @default("")
+  contentfulId String @default("")
+  shows        Show[] @relation("Genre_shows")
 }

@@ -344,6 +344,7 @@ input GenreRelateToManyForCreateInput {
 type Genre {
   id: ID!
   name: String
+  contentfulId: String
   shows(
     where: ShowWhereInput! = {}
     orderBy: [ShowOrderByInput!]! = []
@@ -364,16 +365,19 @@ input GenreWhereInput {
   NOT: [GenreWhereInput!]
   id: IDFilter
   name: StringFilter
+  contentfulId: StringFilter
   shows: ShowManyRelationFilter
 }
 
 input GenreOrderByInput {
   id: OrderDirection
   name: OrderDirection
+  contentfulId: OrderDirection
 }
 
 input GenreUpdateInput {
   name: String
+  contentfulId: String
   shows: ShowRelateToManyForUpdateInput
 }
 
@@ -384,6 +388,7 @@ input GenreUpdateArgs {
 
 input GenreCreateInput {
   name: String
+  contentfulId: String
   shows: ShowRelateToManyForCreateInput
 }
 
