@@ -7,6 +7,12 @@ export const Genre = list({
       isIndexed: "unique",
       validation: { isRequired: true },
     }),
-    shows: relationship({ ref: "Show.genres", many: true }),
+    shows: relationship({
+      ref: "Show.genres",
+      many: true,
+      ui: {
+        hideCreate: true,
+      },
+    }),
   },
 });
